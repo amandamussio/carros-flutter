@@ -24,9 +24,9 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: ListView(
             children: <Widget>[
-              textFormField("Login", "Digite o login", controller: _tLogin, validator: _validateLogin),
+              textFormField("Login", "Digite o login", controller: _tLogin, validator: _validateLogin, keyboardType: TextInputType.emailAddress,),
               SizedBox(height: 10),
-              textFormField("Senha", "Digite a senha", password: true, controller: _tSenha, validator: _validateSenha),
+              textFormField("Senha", "Digite a senha", password: true, controller: _tSenha, validator: _validateSenha, keyboardType: TextInputType.number,),
               SizedBox(height: 20),
               _button("Entrar",_onClickLogin),
             ],
@@ -62,11 +62,13 @@ class LoginPage extends StatelessWidget {
   }
 
   TextFormField textFormField(String label, String hint,
-      {bool password = false, TextEditingController controller, Function validator}) {
+      {bool password = false, TextEditingController controller, Function validator, TextInputType keyboardType}) {
     return TextFormField(
       controller: controller,
       validator: validator,
       obscureText: password,
+      keyboardType: keyboardType,
+      keyboardAppearance: Brightness.dark, //padrao dark
       style: TextStyle(fontSize: 25, color: Colors.blue),
       decoration: InputDecoration(
           labelText: label,
